@@ -17,7 +17,6 @@ Användar databasen borde ha
 Kommer att använda bootstrap för att styla min sida.
 
 ## Back end
-
   
 kommer först ha en start sida, på startsida kan du kolla på musik databasen och söka och lyssna men du kan inte ge någon rating
 Kommer ha routes för en inlogning och för att skapa konton.
@@ -36,3 +35,7 @@ Jag vet bara så mycket om databaser samt webb-programering.
 | 20    |           |   |                     |   |        |   |
 | 21    |           |   |                     |   |        |   |
 | 22    |           |   | Inlämning           |   |        |   |
+
+
+## Väldigt enkel figma skiss
+https://www.figma.com/file/bhddVHKsYHuE1flbMpZZ59/Untitled?node-id=2%3A123 
