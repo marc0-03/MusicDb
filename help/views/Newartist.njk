@@ -1,0 +1,14 @@
+{% extends "layout.njk" %}
+{% block  content %}
+<main class="container">
+<h1>NEW ARTIST</h1>
+<form action="/content/newartist" method="post">
+    <label for="meep">New Artist</label>
+        <div class="mb-3">
+            <label>Name of the artist</label>
+            <input type="text" class="form-control" name="name" id="name" value="{{meep.body}}" placeholder="Artist name" required>
+            <button class="btn btn-outline-secondary" type="submit" id="button-addon2">Create</button>
+        </div>
+    </form>
+    </main>
+{% endblock %}
