@@ -1,7 +1,42 @@
 {% extends "layout.njk" %}
 {% block  content %}
-<form action="upload.php" method="post" enctype="multipart/form-data">
-<input type="file" name="file" />
-<button type="submit" name="upload">upload</button>
-</form>
+<main class="container">
+    <div class="card bg-light mb-3 mx-auto" style="max-width: 42rem;">
+        <div class="card-header" style="text-align: center">Add a new song</div>
+        <div class="mb-3, card-body">
+            <form action="upload.php" method="post" enctype="multipart/form-data">
+                <label>Name of the song</label>
+                <input type="text" class="form-control" name="name" id="name" placeholder="Song name" required>
+                <label>Name of the album</label>
+                <input type="text" class="form-control" name="name" id="name" placeholder="Album name (if it's a single dont put anything here)">
+                
+                <label for="artists">Who produced the song:</label>
+                <select id="artists" name="artists" size="4" multiple>
+                    {% for artist in artists %}
+                    <option value="{{artist.id}}">{{artist.name}}</option>
+                    {% endfor %}
+                </select>
+
+                <label for="genres">pick the genres that best describe the song:</label>
+                <select id="genres" name="genres" size="5" multiple>
+                    <option value="">Rock</option>
+                    <option value="">Jazz</option>
+                    <option value="">EDM</option>
+                    <option value="">Dubstep</option>
+                    <option value="">Country</option>
+                    <option value="">Pop</option>
+                    <option value="">Hip hop</option>
+                    <option value=""></option>
+                </select>
+
+
+                <label for="imagefile">Song/Albumcover</label>
+                <input type="file" name="imagefile" id="imagefile" accept="image/png, image/jpeg"/>
+                <label for="audiofile">Audio file</label>
+                <input type="file" name="audiofile" id="audiofile" accept="audio/mp3, "/>
+                <button type="submit" name="upload">upload</button>
+            </form>
+        </div>
+    </div>
+</main>
 {% endblock %}

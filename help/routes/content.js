@@ -47,10 +47,11 @@ router.get('/newartist', async function (req, res, next) {
     res.render('Newartist.njk', { title: 'Artist' });
 });
 router.post('/newartist', async function (req, res, next) {
-    const sql = 'INSERT INTO masnyd_artists (name) VALUES (?)'; 
+    const sql = 'INSERT INTO masnyd_artists (name, date) VALUES (?,?)';
+    const date = req.body.start;
     const name = req.body.name;
     await pool.promise()
-    .query(sql, [name])
+    .query(sql, [name, date])
     .then((response) => {
         res.render('content.njk', { title: 'content' });
     })
@@ -65,6 +66,24 @@ router.post('/newartist', async function (req, res, next) {
 });
 
 router.get('/newsong', async function (req, res, next) {
-    res.render('Newsong.njk', { title: 'Artist' });
+
+    await pool.promise()
+        .query('SELECT * FROM masnyd_artists')
+        .then(([rows, fields]) => {
+            res.render('Newsong.njk', {
+                artists: rows,
+                title:  'NewSong',
+            })
+        })
+        .catch(err => {
+            console.log(err)
+            res.status(500).json({
+                meeps: {
+                    error: 'Error getting meeps'
+                }
+            })
+        })
+
+    res.render('', { title: 'Artist' });
 });
 module.exports = router;
