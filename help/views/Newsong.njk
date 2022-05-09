@@ -4,11 +4,11 @@
     <div class="card bg-light mb-3 mx-auto" style="max-width: 42rem;">
         <div class="card-header" style="text-align: center">Add a new song</div>
         <div class="mb-3, card-body">
-            <form action="upload.php" method="post" enctype="multipart/form-data">
+            <form action="/content/newsong" method="post">
                 <label>Name of the song</label>
-                <input type="text" class="form-control" name="name" id="name" placeholder="Song name" required>
+                <input type="text" class="form-control" name="songname" id="songname" placeholder="Song name" required>
                 <label>Name of the album</label>
-                <input type="text" class="form-control" name="name" id="name" placeholder="Album name (if it's a single dont put anything here)">
+                <input type="text" class="form-control" name="albumname" id="albumname" placeholder="Album name (if it's a single dont put anything here)">
                 
                 <label for="artists">Who produced the song:</label>
                 <select id="artists" name="artists" size="4" multiple>
