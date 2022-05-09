@@ -66,7 +66,6 @@ router.post('/newartist', async function (req, res, next) {
 });
 
 router.get('/newsong', async function (req, res, next) {
-
     await pool.promise()
         .query('SELECT * FROM masnyd_artists')
         .then(([rows, fields]) => {
@@ -86,4 +85,60 @@ router.get('/newsong', async function (req, res, next) {
 
     res.render('', { title: 'Artist' });
 });
+
+router.post('/newsong', async function (req, res, next) {
+    const sql = 'INSERT INTO masnyd_songs (song_name, song_album, artists, genres, audiofile, imagefile) VALUES (?,?,?,?,?,?)';
+    const song_name = req.body.song_name;
+    const song_album = req.body.song_album;
+    const artists = req.body.artists;
+    const genres = req.body.genres;
+    const audiofile = req.body.audiofile;
+    const imagefile = req.body.imagefile;
+
+    await pool.promise()
+    .query(sql, [song_name, song_album, artists, genres, audiofile, imagefile])
+    .then((response) => {
+        res.render('content.njk', { title: 'content' });
+    })
+    .catch(err => {
+        console.log(err);
+        res.status(500).json({
+            meeps: {
+                error: "Cannot retrieve meeps"
+            }
+        });
+    });
+});
+
+
+router.get('/song/:id', async (req, res, next) => {
+    const id = req.params.id;
+
+    if (isNaN(req.params.id)) {
+        res.status(400).json({
+            meep : {
+                error: 'Bad request'
+            }
+        })
+    } else {
+        await pool.promise()
+        .query('SELECT * FROM masnyd_songs WHERE id = ?', [id])
+        .then(([rows, fields]) => {
+            res.render('song.njk', {
+                songs: rows,
+                title:  'meeps',
+                layout: 'layout.njk'
+            })
+        })
+        .catch(err => {
+            console.log(err)
+            res.status(500).json({
+                meeps: {
+                    error: 'Error getting meeps'
+                }
+            })
+        })
+    }
+});
+
 module.exports = router;
