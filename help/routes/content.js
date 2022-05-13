@@ -6,13 +6,32 @@ const bcrypt = require('bcrypt');
 const { hash } = require('bcrypt');
 
 router.get('/', async function(req, res, next) {
-
+    /*
     if (req.session.loggedin) {
         req.session.destroy();
         res.send('CONTENT SITE -- LOGGED IN');
     } else {
-        res.render('content.njk', { title: 'content' });
     }
+    */
+
+    await pool.promise()
+        .query('SELECT * FROM masnyd_songs')
+        .then(([rows, fields]) => {
+            res.render('content.njk', {
+                songs: rows,
+                title:  'content',
+                layout: 'layout.njk'
+            })
+        })
+        .catch(err => {
+            console.log(err)
+            res.status(500).json({
+                meeps: {
+                    error: 'Error getting songs'
+                }
+            })
+        })
+    
 
 });
   
@@ -87,18 +106,21 @@ router.get('/newsong', async function (req, res, next) {
 });
 
 router.post('/newsong', async function (req, res, next) {
-    const sql = 'INSERT INTO masnyd_songs (song_name, song_album, artists, genres, audiofile, imagefile) VALUES (?,?,?,?,?,?)';
-    const song_name = req.body.song_name;
-    const song_album = req.body.song_album;
+    const sql = 'INSERT INTO masnyd_songs (song_name, song_album, artists, genres, song_link, imagefile) VALUES (?,?,?,?,?,?)';
+    const song_name = req.body.songname;
+    const song_album = req.body.albumname;
     const artists = req.body.artists;
     const genres = req.body.genres;
-    const audiofile = req.body.audiofile;
+    const song_link = req.body.song_link;
     const imagefile = req.body.imagefile;
+    console.log(artists);
+    console.log(genres);
+    console.log(audiofile);
 
     await pool.promise()
-    .query(sql, [song_name, song_album, artists, genres, audiofile, imagefile])
+    .query(sql, [song_name, song_album, artists, genres, song_link, imagefile])
     .then((response) => {
-        res.render('content.njk', { title: 'content' });
+        res.redirect("/content")
     })
     .catch(err => {
         console.log(err);

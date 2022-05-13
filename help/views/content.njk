@@ -6,8 +6,20 @@
 <a href="/content/newsong"><button type="button" class="btn btn-secondary">New song</button></a>
 
 {% for song in songs %}
-
+<div class="card bg-light mb-3 mx-auto" style="max-width: 42rem;">
+    <div class="card-header">{{ song.song_name }}</div>
+    <h1>{{song.audiofile}}</h1>
+        <div class="mb-3, card-body">
+            <audio>
+                <source src="{{song.audiofile}}" type="audio/mpeg">
+                Your browser does not support the audio element.
+            </audio>
+            <img src="{{song.imagefile}}" alt="Album Cover" width="100" height="100">
+            {{ song.artists }} 
+        </div>
+    </div>
 {% endfor %}
+
 
 </main>
 {% endblock %}

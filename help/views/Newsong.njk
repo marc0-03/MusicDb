@@ -19,21 +19,22 @@
 
                 <label for="genres">pick the genres that best describe the song:</label>
                 <select id="genres" name="genres" size="5" multiple>
-                    <option value="">Rock</option>
-                    <option value="">Jazz</option>
-                    <option value="">EDM</option>
-                    <option value="">Dubstep</option>
-                    <option value="">Country</option>
-                    <option value="">Pop</option>
-                    <option value="">Hip hop</option>
-                    <option value=""></option>
+                    <option value="Rock">Rock</option>
+                    <option value="Jazz">Jazz</option>
+                    <option value="EDM">EDM</option>
+                    <option value="Dubstep">Dubstep</option>
+                    <option value="Country">Country</option>
+                    <option value="Pop">Pop</option>
+                    <option value="Hip-hop">Hip-hop</option>
+                    <option value="Classic">Classic</option>
+                    <option value="Soundtrack">Soundtrack</option>
                 </select>
 
 
                 <label for="imagefile">Song/Albumcover</label>
                 <input type="file" name="imagefile" id="imagefile" accept="image/png, image/jpeg"/>
-                <label for="audiofile">Audio file</label>
-                <input type="file" name="audiofile" id="audiofile" accept="audio/mp3, "/>
+                <label for="Song link">Audio file</label>
+                <input type="text" class="form-control" name="songlink" id="songlink" placeholder="Song Link" required>
                 <button type="submit" name="upload">upload</button>
             </form>
         </div>
