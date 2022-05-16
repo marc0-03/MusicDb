@@ -115,7 +115,6 @@ router.post('/newsong', async function (req, res, next) {
     const imagefile = req.body.imagefile;
     console.log(artists);
     console.log(genres);
-    console.log(audiofile);
 
     await pool.promise()
     .query(sql, [song_name, song_album, artists, genres, song_link, imagefile])
