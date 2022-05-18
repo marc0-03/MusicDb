@@ -1,25 +1,26 @@
 ## Databaser
 Borde ha en databas för artister, ratings, användare och låtar.
 Artist databasen borde ha   
-| ID | NAMN | STARTED_AT |
+| (long auto) ID | (string) NAMN | (date) STARTED_AT |
 
 Låt databasen borde ha      
-| ID | LÅTNAMN | ALBUM | ARTISTER |  GENRE | LÅT |
+| (long auto) ID | (string) LÅTNAMN | (string) ALBUMNAMN | (array of longs) ARTISTER | (Set multi) GENRE | (Link to spotify or soundcloud) LÅT | (Image fil) ALBUMCOVER |
 
 Ratings databasen borde ha  
-| ID | LÅT_ID | ANVÄNDARID | RATING |
+| (long auto) ID | (long) LÅT_ID | (long) ANVÄNDARID | (long 1-10) RATING |
 
 Användar databasen borde ha   
-| ID | NAMN | LÖSENORD |
+| (long auto) ID | (string) NAMN | (string) LÖSENORD |
 
 
 ## Front end
 Kommer att använda bootstrap för att styla min sida.
+Har gjort en figma skiss för hur det ungefär kommer att se ut.
 
 ## Back end
   
 kommer först ha en start sida, på startsida kan du kolla på musik databasen och söka och lyssna men du kan inte ge någon rating
-Kommer ha routes för en inlogning och för att skapa konton.
+Kommer ha routes för en inlogning och för att skapa konton, för att ladda up låtar och artister, för att kolla på en viss låt.
 när du är inloggad kan du posta mer låtar till databasen och ge dom en rating men resten kommer vara densamma som om du är utloggad
 
 ## Avgränsningar
