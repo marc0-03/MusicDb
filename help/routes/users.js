@@ -83,29 +83,5 @@ router.get('/signout', function (req, res, next) {
 });
 
 
-router.post('/', async (req, res, next) => {
-  // { "tweet": "koda post" }
-  const tweets = req.body.tweets;
-  const id = req.session.userID;
-  await pool
-      .promise()
-      .query('INSERT INTO meeps (body,user_id) VALUES (?,?)', [tweets, id])
-      .then((response) => {
-          if (response[0].affectedRows === 1) {
-              res.redirect('/users/content');
-          } else {
-              res.status(400).json({
-                  tweet: {
-                      error: 'Invalid tweet',
-                  },
-              });
-          }
-      })
-      .catch((err) => {
-          console.log(err);
-      });
-});
-
-
 
 module.exports = router;

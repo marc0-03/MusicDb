@@ -13,11 +13,13 @@ router.get('/', async function(req, res, next) {
     } else {
     }
     */
+   console.log(req.session)
 
     await pool.promise()
         .query('SELECT * FROM masnyd_songs')
         .then(([rows, fields]) => {
             res.render('content.njk', {
+                session: req.session,
                 songs: rows,
                 title:  'content',
                 layout: 'layout.njk'
@@ -43,6 +45,7 @@ router.get('/content', async function (req, res, next) {
             .query('SELECT meeps.*,users.name FROM meeps JOIN users ON users.id=meeps.user_id ORDER BY created_at DESC')
             .then(([rows, fields]) => {
                 res.render('content.njk', {
+                    session: req.session,
                     meeps: rows,
                 });
             })
@@ -63,9 +66,15 @@ router.get('/content', async function (req, res, next) {
 });
 
 router.get('/newartist', async function (req, res, next) {
+    if (!req.session.loggedin) {
+        res.redirect("/content")
+    }
     res.render('Newartist.njk', { title: 'Artist' });
 });
 router.post('/newartist', async function (req, res, next) {
+    if (!req.session.loggedin) {
+        res.redirect("/content")
+    }
     const sql = 'INSERT INTO masnyd_artists (name, date) VALUES (?,?)';
     const date = req.body.start;
     const name = req.body.name;
@@ -85,6 +94,9 @@ router.post('/newartist', async function (req, res, next) {
 });
 
 router.get('/newsong', async function (req, res, next) {
+    if (!req.session.loggedin) {
+        res.redirect("/content")
+    }
     await pool.promise()
         .query('SELECT * FROM masnyd_artists')
         .then(([rows, fields]) => {
@@ -106,6 +118,9 @@ router.get('/newsong', async function (req, res, next) {
 });
 
 router.post('/newsong', async function (req, res, next) {
+    if (!req.session.loggedin) {
+        res.redirect("/content")
+    }
     const sql = 'INSERT INTO masnyd_songs (song_name, song_album, artists, genres, song_link, imagefile) VALUES (?,?,?,?,?,?)';
     const song_name = req.body.songname;
     const song_album = req.body.albumname;
@@ -115,6 +130,7 @@ router.post('/newsong', async function (req, res, next) {
     const imagefile = req.body.imagefile;
     console.log(artists);
     console.log(genres);
+
 
     await pool.promise()
     .query(sql, [song_name, song_album, artists, genres, song_link, imagefile])
@@ -146,6 +162,7 @@ router.get('/song/:id', async (req, res, next) => {
         .query('SELECT * FROM masnyd_songs WHERE id = ?', [id])
         .then(([rows, fields]) => {
             res.render('song.njk', {
+                session: req.session,
                 songs: rows,
                 title:  'meeps',
                 layout: 'layout.njk'

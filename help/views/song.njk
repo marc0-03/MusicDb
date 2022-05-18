@@ -1,3 +1,11 @@
 {% extends "layout.njk" %}
 {% block  content %}
+<main class="container">
+    {% for song in songs %}
+    <div class="card bg-light mb-3 mx-auto" style="max-width: 42rem;">
+        <div class="card-header" style="text-align: center">Add a new song</div>
+
+    </div>
+    {% endfor %}
+</main>
 {% endblock %}

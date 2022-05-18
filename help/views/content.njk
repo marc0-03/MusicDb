@@ -2,8 +2,10 @@
 {% block  content %}
 <main class="container">
 <h1> GOT DAMN, MAIN CONTENT PAGE</h1>
+{% if session.loggedin %}
 <a href="/content/newartist"><button type="button" class="btn btn-secondary">New artist</button></a>
 <a href="/content/newsong"><button type="button" class="btn btn-secondary">New song</button></a>
+{% endif %}
 
 {% for song in songs %}
 <div class="card bg-light mb-3 mx-auto" style="max-width: 42rem;">

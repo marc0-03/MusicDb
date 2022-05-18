@@ -4,7 +4,7 @@
     <div class="card bg-light mb-3 mx-auto" style="max-width: 42rem;">
         <div class="card-header" style="text-align: center">Add a new song</div>
         <div class="mb-3, card-body">
-            <form action="/content/newsong" method="post">
+            <form action="/content/newsong" enctype="multipart/form-data" method="post">
                 <label>Name of the song</label>
                 <input type="text" class="form-control" name="songname" id="songname" placeholder="Song name" required>
                 <label>Name of the album</label>
@@ -29,7 +29,6 @@
                     <option value="Classic">Classic</option>
                     <option value="Soundtrack">Soundtrack</option>
                 </select>
-
 
                 <label for="imagefile">Song/Albumcover</label>
                 <input type="file" name="imagefile" id="imagefile" accept="image/png, image/jpeg"/>
