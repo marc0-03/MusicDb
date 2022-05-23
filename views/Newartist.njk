@@ -1,0 +1,17 @@
+{% extends "layout.njk" %}
+{% block  content %}
+<main class="container">
+    <div class="card bg-light mb-3 mx-auto" style="max-width: 42rem;">
+        <div class="card-header" style="text-align: center">Add a new artist</div>
+        <div class="mb-3, card-body">
+            <form action="/content/newartist" method="post">
+                <label for="name" class="card-text">Name of the artist</label>
+                <input type="text" class="form-control" name="name" id="name" value="{{meep.body}}" placeholder="Artist name" required>
+                <label for="start" class="card-text">When did they start</label>
+                <input type="date" id="start" name="start">
+                <button class="btn btn-outline-dark btn-warning" type="submit" id="button-addon2">Create</button>
+            </form>
+        </div>
+    </div>
+</main>
+{% endblock %}

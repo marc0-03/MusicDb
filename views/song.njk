@@ -1,0 +1,31 @@
+{% extends "layout.njk" %}
+{% block  content %}
+<main class="container">
+    {% for song in songs %}
+    <div class="card bg-light mb-3 mx-auto" style="max-width: 42rem;">
+    <div class="card-header">
+        {{ song.song_name }} - {{song.song_album}}</div>
+        <div class="mb-3, card-body">
+
+            <iframe style="border-radius:12px" src="{{song.song_link}}" 
+            width="100%" height="380" frameBorder="0" allowfullscreen="" 
+            allow="autoplay; clipboard-write; encrypted-media; fullscreen; picture-in-picture">
+            </iframe>
+            {{ song.artists }}
+            {{ song.genres }}
+        </div>
+        <div class="mb-3, card-body">
+        <form action="/content/song/{{song.id}}" method="post">
+            <label>Give a Rating (between 1 and 10):</label>
+            <div class="slidecontainer">
+                <input type="range" min="1" max="10" value="5" class="slider" id="range">
+            </div>
+            <button class="btn btn-outline-dark btn-warning" type="submit" id="button-addon2">Submit</button>
+        </form>
+        </div>
+
+    </div>
+
+    {% endfor %}
+</main>
+{% endblock %}
