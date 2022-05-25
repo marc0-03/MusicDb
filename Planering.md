@@ -15,6 +15,7 @@ Användar databasen borde ha
 
 ## Front end
 Kommer att använda bootstrap för att styla min sida.
+
 Har gjort en figma skiss för hur det ungefär kommer att se ut.
 
 ## Back end
@@ -40,3 +41,14 @@ Jag vet bara så mycket om databaser samt webb-programering.
 
 ## Väldigt enkel figma skiss
 https://www.figma.com/file/bhddVHKsYHuE1flbMpZZ59/Untitled?node-id=2%3A123 
+
+# PLANERING 2
+eftersom jag inte har kunnat få "fileupload" att fungera och copyright issues har jag ändrat min planering
+
+Min sida kommer att fungera på spotify länkar:
+när en andäare vill lägga till en ny låt kommer dom få lov att först kolla om deras artisten som skapade låten finns. efter användaren kollar om deras artist finns kan de lägga in en ny låt och de kan skicka in en spotify länk till vilken låt de vill,
+
+eftersom jag nu använder spotify länkar har jag börjat jobba med spotifys embeds och hur jag kan få dom att fungera på sidan
+
+
+Eftersom jag inte fick behöver ändra i min planering och göra om saker kommer jag inte ha tid att kunna skapa "ratings" men kommer fortfarande fixa en sida för det som om det fungerade
