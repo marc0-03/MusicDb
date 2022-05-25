@@ -1,8 +1,10 @@
 {% extends "layout.njk" %}
 {% block  content %}
 <main class="container">
-  <h1>Signup</h1>
-  <form action="/users/signup" method="post" class="mtop">
+    <div class="card bg-light mb-3 mx-auto mt-5" style="max-width: 42rem;">
+        <div class="card-header" style="text-align: center">Sign up</div>
+        <div class="mb-3, card-body">
+            <form action="/users/signup" method="post" class="mtop">
         <div class="input-group input-group-sm mb-3">
           <span class="input-group-text" id="inputGroup-sizing-sm">Username</span>
           <input class="form-control" 
@@ -13,7 +15,7 @@
             required 
             aria-label="Sizing example input" 
             aria-describedby="inputGroup-sizing-sm"
-            placeholder="Type username" >
+            placeholder="username" >
         </div>
         <div class="input-group input-group-sm mb-3">
           <span class="input-group-text" id="inputGroup-sizing-sm">Password</span>
@@ -25,7 +27,7 @@
             required 
             aria-label="Sizing example input" 
             aria-describedby="inputGroup-sizing-sm"
-            placeholder="Type password" >
+            placeholder="password" >
         </div>
         <div class="input-group input-group-sm mb-3">
           <span class="input-group-text" id="inputGroup-sizing-sm">Confirm password</span>
@@ -39,7 +41,10 @@
             placeholder="Confirm password" >
         </div>
             <button class="btn btn-warning" type="submit">Sign up</button>
-      </form>
       <div>{{error}}</div>
-      </main>
+      </form>
+      
+        </div>
+    </div>
+</main>
 {% endblock %}

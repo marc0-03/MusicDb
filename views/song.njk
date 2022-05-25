@@ -2,7 +2,7 @@
 {% block  content %}
 <main class="container">
     {% for song in songs %}
-    <div class="card bg-light mb-3 mx-auto" style="max-width: 42rem;">
+    <div class="card bg-light mb-3 mx-auto mt-5" style="max-width: 42rem;">
     <div class="card-header">
         {{ song.song_name }} - {{song.song_album}}</div>
         <div class="mb-3, card-body">
@@ -15,13 +15,16 @@
             {{ song.genres }}
         </div>
         <div class="mb-3, card-body">
+            {% if session.loggedin %}
         <form action="/content/song/{{song.id}}" method="post">
-            <label>Give a Rating (between 1 and 10):</label>
-            <div class="slidecontainer">
-                <input type="range" min="1" max="10" value="5" class="slider" id="range">
-            </div>
+            <label>Give a Rating (between 0 and 10):</label>
+            
+            <input class="form-range" type="range" min="0" max="10" value="5" class="slider" id="range">
             <button class="btn btn-outline-dark btn-warning" type="submit" id="button-addon2">Submit</button>
         </form>
+        {% else %}
+        <h3>Create an account or login to rate this song</h3>
+        {% endif %}
         </div>
 
     </div>

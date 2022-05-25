@@ -8,13 +8,22 @@ const { hash } = require('bcrypt');
 /* GET users listing. */
 
 router.get('/', function (req, res, next) {
-  res.render('signin.njk', { title: 'signin' });
+  res.render('signin.njk', { 
+    session: req.session,
+    title: 'signin' 
+  });
 });
 router.get('/signin', function (req, res, next) {
-  res.render('signin.njk', { title: 'signin' });
+  res.render('signin.njk', { 
+    session: req.session,
+    title: 'signin' 
+  });
 });
 router.get('/signup', function (req, res, next) {
-  res.render('signup.njk', { title: 'signup' });
+  res.render('signup.njk', { 
+    session: req.session,
+    title: 'signup' 
+  });
 });
 
 router.post('/signin', async function (req, res, next) {
@@ -37,12 +46,12 @@ router.post('/signin', async function (req, res, next) {
       return res.redirect('/content');
   
       } else {
-        res.render('signin.njk', { title: 'signin', error: 'Wrong username or password' });
+        res.render('signin.njk', { session: req.session, title: 'signin', error: 'Wrong username or password' });
       }
     });
   })
   .catch((err) => {
-    res.render('signin.njk', { title: 'signin', error: 'Wrong username or password' });
+    res.render('signin.njk', { session: req.session, title: 'signin', error: 'Wrong username or password' });
 
     console.log(err);
   });

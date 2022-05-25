@@ -1,24 +1,19 @@
 {% extends "layout.njk" %}
 {% block  content %}
-<main class="container">
-<h1> GOT DAMN, MAIN CONTENT PAGE</h1>
-{% if session.loggedin %}
-<a href="/content/newartist"><button type="button" class="btn btn-secondary">New artist</button></a>
-<a href="/content/newsong"><button type="button" class="btn btn-secondary">New song</button></a>
-{% endif %}
+<main class="container mt-5">
 
 {% for song in songs %}
 <div class="card bg-light mb-3 mx-auto" style="max-width: 42rem;">
     <div class="card-header">
-        <a href="/content/song/{{song.id}}">{{ song.song_name }} - {{song.song_album}}</a></div>
+        <a class="link-dark" href="/content/song/{{song.id}}">{{ song.song_name }} - {{song.song_album}}</a></div>
         <div class="mb-3, card-body">
 
             <iframe style="border-radius:12px" src="{{song.song_link}}" 
             width="100%" height="80" frameBorder="0" allowfullscreen="" 
             allow="autoplay; clipboard-write; encrypted-media; fullscreen; picture-in-picture">
             </iframe>
-            {{ song.artists }}
-            {{ song.genres }}
+            <p>{{ song.name }}</p>
+            <p>{{ song.genres }}</p>
         </div>
     </div>
 {% endfor %}

@@ -1,11 +1,10 @@
 {% extends "layout.njk" %}
 {% block  content %}
-  <main class="container">
-  <h1>Signin</h1>
-  <a href="/users">
-  <h1>home</h1>
-  </a>
-
+      <main class="container">
+        <div class="card bg-light mb-3 mx-auto mt-5" style="max-width: 42rem;">
+            <div class="card-header" style="text-align: center">Sign in</div>
+            <div class="mb-3, card-body">
+                
   <form action="/users/signin" method="post" class="mtop">
         <div class="input-group input-group-sm mb-3">
           <span class="input-group-text" id="inputGroup-sizing-sm">Username</span>
@@ -34,5 +33,7 @@
       <h1 class="btn-danger">{{error}}</h1>
             <button class="btn btn-success" type="submit">Sign in</button>
       </form>
-  </main>
+            </div>
+        </div>
+    </main>
 {% endblock %}
