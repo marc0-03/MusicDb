@@ -17,8 +17,10 @@ router.get('/', async function(req, res, next) {
    console.log(req.session)
 
     await pool.promise()
-        .query('SELECT * FROM masnyd_songs')
+        .query('SELECT masnyd_songs.*,masnyd_artists.name FROM masnyd_songs JOIN masnyd_artists ON masnyd_songs.artists=masnyd_artists.id')
         .then(([rows, fields]) => {
+            console.log(rows);
+            
             res.render('content.njk', {
                 session: req.session,
                 songs: rows,
@@ -41,7 +43,6 @@ router.get('/', async function(req, res, next) {
 router.get('/content', async function (req, res, next) {
     console.log(req.session);
     if (req.session.loggedin) {
-      //res.render('content.njk', { title: 'content' , name: req.session.name});
         await pool.promise()
             .query('SELECT meeps.*,users.name FROM meeps JOIN users ON users.id=meeps.user_id ORDER BY created_at DESC')
             .then(([rows, fields]) => {
@@ -70,7 +71,10 @@ router.get('/newartist', function (req, res, next) {
     if (!req.session.loggedin) {
         res.redirect("/content")
     }
-    res.render('Newartist.njk', { title: 'Artist' });
+    res.render('Newartist.njk', {
+        session: req.session,
+        title: 'Artist' 
+    });
 });
 router.post('/newartist', async function (req, res, next) {
     if (!req.session.loggedin) {
@@ -82,7 +86,7 @@ router.post('/newartist', async function (req, res, next) {
     await pool.promise()
     .query(sql, [name, date])
     .then((response) => {
-        res.render('content.njk', { title: 'content' });
+        res.redirect("/content")
     })
     .catch(err => {
         console.log(err);
@@ -102,6 +106,7 @@ router.get('/newsong', async function (req, res, next) {
         .query('SELECT * FROM masnyd_artists')
         .then(([rows, fields]) => {
             res.render('Newsong.njk', {
+                session: req.session,
                 artists: rows,
                 title:  'NewSong',
             })
@@ -149,7 +154,7 @@ router.post('/newsong', async function (req, res, next) {
         console.log(err);
         res.status(500).json({
             meeps: {
-                error: "Cannot retrieve meeps"
+                error: "something went wrong"
             }
         });
     });
@@ -188,7 +193,7 @@ router.get('/song/:id', async (req, res, next) => {
 });
 router.post('/song/:id', async (req, res, next) => {
     const id = req.params.id;
-    const sql = 'INSERT INTO masnyd_ratings (user_id, rating) VALUES (?,?)';
+    const sql = 'INSERT INTO masnyd_ratings (user_id, rating, song_id) VALUES (?,?,?)';
     let rating = req.body.range;
 
     if (isNaN(req.params.id)) {

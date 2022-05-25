@@ -12,9 +12,10 @@
         <li class="nav-item">
           <a class="nav-link" href="/users/signin">Login</a>
         </li>
-        <li class="nav-item">
-          <a class="nav-link disabled">More coming soon...</a>
-        </li>
+        {% if session.loggedin %}
+        <li><a class="nav-link active" href="/content/newartist">New artist</a></li>
+        <li><a class="nav-link active" href="/content/newsong">New song</a></li>
+        {% endif %}
       </ul>
       <form class="d-flex" action="/meeps/search" method="post">
         <input type="text" class="form-control" name="search" id="search" maxlength="140" placeholder="search" required>
