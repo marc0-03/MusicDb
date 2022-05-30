@@ -42,3 +42,8 @@ Behöver hjälp med mycket.
 VEt fortfarande inte hur jag ska ladda upp filer till databasen eller hur jag ska jobba med spotify länkar
 hoppas att jag får någon ide om hur jag ska göra det idag
 Behöver hjälp fortfarande
+---------------------------------------------------------------------------------------------------------
+2022-05-30
+Har bytt ifrån att ladda up filer till databasen till att användare skickar in spotify länkar som jag sparar. Har fått det att fungera att skicka in spotify länkar och göra dom till "embeds" på sidan. Har också fixat en sida för varje låt där man orginellt skulle kunna sätta en "rating" på låten men eftersom jag inte har all tid i världen kommer jag inte kunna göra det. Har fått en search bar att fungera för att söka upp låtar, skulle kunna lägga till mer sätt för användare att söka efter låtar som efter artist eller genre men har inte nog med tid.
+Idag ska jag skriva dokumentation
+vet inte om jag behöver hjälp med nått
