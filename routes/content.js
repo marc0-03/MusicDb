@@ -122,11 +122,9 @@ router.get('/newsong', async function (req, res, next) {
 });
 
 router.post('/newsong', async function (req, res, next) {
-    /*
     if (!req.session.loggedin) {
         res.redirect("/content")
     }
-    */
     console.log(req.body);
     const sql = 'INSERT INTO masnyd_songs (song_name, song_album, artists, genres, song_link) VALUES (?,?,?,?,?)';
     const song_name = req.body.songname;
@@ -140,8 +138,6 @@ router.post('/newsong', async function (req, res, next) {
     let x = song_link.split('/')[4]
     let y = x.split('?')[0]
     console.log(y);
-    // https://open.spotify.com/track/         4b82tXj35SycILuILcgBQ6  ?si=2ea71de2ed004b98
-    // https://open.spotify.com/embed/track/   4b82tXj35SycILuILcgBQ6  ?utm_source=generator
     song_link = "https://open.spotify.com/embed/track/"+y+"?utm_source=generator";
     console.log(song_link);
 
@@ -172,7 +168,7 @@ router.get('/song/:id', async (req, res, next) => {
         })
     } else {
         await pool.promise()
-        .query('SELECT * FROM masnyd_songs WHERE id = ?', [id])
+        .query('SELECT masnyd_songs.*,masnyd_artists.name FROM masnyd_songs JOIN masnyd_artists ON masnyd_songs.artists=masnyd_artists.id WHERE masnyd_songs.id = ?', [id])
         .then(([rows, fields]) => {
             res.render('song.njk', {
                 session: req.session,
@@ -222,6 +218,30 @@ router.post('/song/:id', async (req, res, next) => {
             })
         })
     }
+});
+
+router.post('/search', async (req, res, next) => {
+    const search = "SELECT masnyd_songs.*, masnyd_artists.name FROM masnyd_songs JOIN masnyd_artists ON masnyd_songs.artists=masnyd_artists.id WHERE song_name LIKE '%"+req.body.search+"%'";
+    console.log(search)   
+
+    await pool.promise()
+        .query(search)
+        .then(([rows, fields]) => {
+            res.render('content.njk', {
+                session: req.session,
+                songs: rows,
+                title:  'content',
+                layout: 'layout.njk'
+            })
+        })
+        .catch(err => {
+            console.log(err)
+            res.status(500).json({
+                tasks: {
+                    error: 'Error getting tasks'
+                }
+            })
+        })
 });
 
 module.exports = router;

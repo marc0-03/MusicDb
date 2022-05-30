@@ -6,20 +6,18 @@
     </button>
     <div class="collapse navbar-collapse" id="navbarSupportedContent">
       <ul class="navbar-nav me-auto mb-2 mb-lg-0">
-        <li class="nav-item">
-          <a class="nav-link active" aria-current="page" href="/users/signup">Create account</a>
-        </li>
-        <li class="nav-item">
-          <a class="nav-link" href="/users/signin">Login</a>
-        </li>
         {% if session.loggedin %}
+        <li class="nav-item"><a class="nav-link" href="/users/signout">Log out</a></li>
         <li><a class="nav-link active" href="/content/newartist">New artist</a></li>
         <li><a class="nav-link active" href="/content/newsong">New song</a></li>
+        {% else %}
+        <li class="nav-item"><a class="nav-link active" aria-current="page" href="/users/signup">Create account</a></li>
+        <li class="nav-item"><a class="nav-link" href="/users/signin">Login</a></li>
         {% endif %}
       </ul>
-      <form class="d-flex" action="/meeps/search" method="post">
+      <form class="d-flex" action="/content/search" method="post">
         <input type="text" class="form-control" name="search" id="search" maxlength="140" placeholder="search" required>
-        <button class="btn btn-outline-success" type="submit">Meep</button>
+        <button class="btn btn-outline-success" type="submit">Search</button>
       </form>
     </div>
   </div>
