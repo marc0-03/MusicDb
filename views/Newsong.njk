@@ -17,7 +17,7 @@
                 </div>
                 
                 <label for="artists">Who produced the song:</label>
-                <select class="form-select" id="artists" name="artists" size="4" multiple>
+                <select class="form-select" id="artists" name="artists" size="4">
                     {% for artist in artists %}
                     <option value="{{artist.id}}">{{artist.name}}</option>
                     {% endfor %}

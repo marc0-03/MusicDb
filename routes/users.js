@@ -61,12 +61,12 @@ router.post('/signup', function (req, res, next) {
   const password = req.body.password
   const check = req.body.cpassword
   if (name.length < 4) {
-    res.send("Username is to short");
+    res.render('signup.njk', { session: req.session, title: 'signup', error: 'username to short' });
   } else if (password.length < 4) {
-    res.send("PAssword to weAk");
+    res.render('signup.njk', { session: req.session, title: 'signup', error: 'Password to weak' });
   } 
   if (password != check) {
-    res.send("PAssword and check dont match");
+    res.render('signup.njk', { session: req.session, title: 'signup', error: 'Passwords did not match' });
   }
 
 
@@ -82,7 +82,6 @@ router.post('/signup', function (req, res, next) {
       })
       .catch((err) => {
         console.log(err);
-
       });
   });
 });

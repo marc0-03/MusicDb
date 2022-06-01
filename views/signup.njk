@@ -15,7 +15,7 @@
             required 
             aria-label="Sizing example input" 
             aria-describedby="inputGroup-sizing-sm"
-            placeholder="username" >
+            placeholder="username: must be more than 3 characters" >
         </div>
         <div class="input-group input-group-sm mb-3">
           <span class="input-group-text" id="inputGroup-sizing-sm">Password</span>
@@ -27,21 +27,21 @@
             required 
             aria-label="Sizing example input" 
             aria-describedby="inputGroup-sizing-sm"
-            placeholder="password" >
+            placeholder="password: must be more than 3 characters" >
         </div>
         <div class="input-group input-group-sm mb-3">
           <span class="input-group-text" id="inputGroup-sizing-sm">Confirm password</span>
           <input class="form-control" 
             type="text" 
             name="cpassword"
-            id="cpassword"
+            id="cpassword: match your password"
             required 
             aria-label="Sizing example input" 
             aria-describedby="inputGroup-sizing-sm"
             placeholder="Confirm password" >
         </div>
             <button class="btn btn-warning" type="submit">Sign up</button>
-      <div>{{error}}</div>
+      <h1 class="btn-danger">{{error}}</h1>
       </form>
       
         </div>

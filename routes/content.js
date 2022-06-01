@@ -142,7 +142,7 @@ router.post('/newsong', async function (req, res, next) {
     console.log(song_link);
 
     await pool.promise()
-    .query(sql, [song_name, song_album, artists, genres, song_link])
+    .query(sql, [song_name, song_album, artists, genres.join(), song_link])
     .then((response) => {
         res.redirect("/content")
     })
