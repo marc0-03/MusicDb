@@ -58,3 +58,8 @@ Jag skulle vanligtviss komma in i copyright problem på min sida eftersom jag ha
 har validerat sidans css och den var okej men sidans html fick problem, validatorn villa att jag skulle ta bort "frameborder" eftersom den var onödig och att ett procent tecken inte skulle behövas men när jag tog bort det sluttade sidan att se bra ut så jag valde att ha kvar den.
 
 _________________________________________________________________________________________________________
+2022-06-07
+Jens skrev till mig om ett problem runt att kunna lägga till nya låtar och trodde att problem var albumnamnet
+jag testa att skapa en låt och märkte att när en användare inte valde mer än en genre på en låt, skulle inte "genres" i min kod vara en array och däför skulle programmet krasha när den försökte göra .join()
+jag fixade problemet genom att kolla om "genres" var en array i koden med Array.isArray(genres).
+efter jag fixade detta testade jag programmet och det verkade lösningen verkade fungera
